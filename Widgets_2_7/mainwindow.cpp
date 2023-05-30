@@ -22,7 +22,7 @@ Win::Win(QWidget *parent):QWidget(parent)
      vLayout1->addWidget(outputLabel);
      vLayout1->addWidget(outputEdit);
      vLayout1->addStretch();
-     QVBoxLayout *vLayout2 = new QVBoxLayout();
+     QVBoxLayout *vLayout2 = new QVBoxLayout(frame);
      vLayout2->addWidget(nextButton);
      vLayout2->addWidget(exitButton);
      vLayout2->addStretch();
@@ -31,9 +31,9 @@ Win::Win(QWidget *parent):QWidget(parent)
      hLayout->addLayout(vLayout2);
      begin();
 
-     connect(exitButton, SIGNAL(clicked(bool)), this, SLOT(close()));
-     connect(nextButton, SIGNAL(clicked(bool)), this, SLOT(begin()));
-     connect(inputEdit, SIGNAL(returnPressed()), this, SLOT(calc()));
+     connect(exitButton, &QPushButton::clicked, this, &Win::close);
+     connect(nextButton, &QPushButton::clicked, this, &Win::begin);
+     connect(inputEdit, &QLineEdit::returnPressed, this, &Win::calc);
 }
 void Win::begin()
 {
